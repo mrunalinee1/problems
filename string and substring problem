@@ -1,0 +1,6 @@
+ b= s[0:2]
+        s=s.replace(b,'')
+        if b in s:
+            print("true");
+        else:
+            print("false");
