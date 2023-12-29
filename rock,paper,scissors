@@ -1,0 +1,118 @@
+Chef and Chefina are playing the famous game of Rock-Paper-Scissors.
+The game consists of 
+�
+N rounds. In each round, both players choose one of the three moves: Rock, Paper, or Scissors, denoted by R, P, and S respectively.
+
+If both players play the same move, the current round ends in a draw and neither of them gets a point.
+If one of the players plays Rock and the other plays Scissors, the player who played Rock wins the round and gets a point.
+If one of the players plays Scissors and the other plays Paper, the player who played Scissors wins the round and gets a point.
+If one of the players plays Paper and the other plays Rock, the player who played Paper wins the round and gets a point.
+You are given a string 
+�
+A of length 
+�
+N denoting the moves made by Chefina in 
+�
+N rounds.
+To win the game, Chef needs to score more than 
+⌊
+�
+2
+⌋
+⌊ 
+2
+N
+​
+ ⌋ points.
+
+Find the lexicographically smallest sequence of moves that wins the game for Chef.
+
+
+A string 
+�
+X is said to be lexicographically smaller than string 
+�
+Y, if, for the first position where 
+�
+X and 
+�
+Y differ, 
+�
+�
+<
+�
+�
+X 
+i
+​
+ <Y 
+i
+​
+ .
+Input Format
+The first line of input will contain a single integer 
+�
+T, denoting the number of test cases.
+Each test case consists of multiple lines of input.
+The first line of each test case contains an integers 
+�
+N — the length of the string.
+The next line contains a string 
+�
+A of length 
+�
+N.
+Output Format
+For each test case, output on a new line, the lexicographically smallest string of length 
+�
+N which wins the game for Chef.
+
+code in c++17
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	
+	int t;
+	cin >> t;
+	while(t--){
+	    int n;
+	    cin >> n;
+	    string s;
+	    cin >> s;
+	    string ans;
+	    int wreq = n/2;
+	    wreq++;
+	    
+	    int pad = n - wreq;
+	    
+	    int index = 0;
+	    while(pad > 0 && index < s.size()){
+	        ans.push_back('P');
+	        if(s[index] != 'R'){
+	            pad--;
+	        }
+	        index++;
+	    }
+	    
+	    for(;index<s.size();index++){
+	        if(s[index] == 'R')
+	        {
+	            ans.push_back('P');
+	        }
+	        else if(s[index] == 'S')
+	        {
+	            ans.push_back('R');
+	        }
+	        else{
+	            ans.push_back('S');
+	        }
+	    }
+	    
+	    cout << ans << endl;
+	}
+    return 0;
+}
+
+ 
