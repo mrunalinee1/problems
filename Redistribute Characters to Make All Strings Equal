@@ -18,3 +18,28 @@ Output: true
 Explanation: Move the first 'a' in words[1] to the front of words[2],
 to make words[1] = "abc" and words[2] = "abc".
 All the strings are now equal to "abc", so return true.
+class Solution {
+public:
+    bool makeEqual(vector<string>& words) {
+        unordered_map<char, int> counts;
+        for (auto i  : words)
+         {
+            for (char j : i)
+             {
+                counts[j]++;
+            }
+        }
+        
+        int n = words.size();
+        for (auto i : counts)
+         {
+            if (i.second % n != 0) 
+            {
+                return false;
+            }
+        }
+        
+        return true;
+    }
+        
+};
