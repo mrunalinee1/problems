@@ -1,0 +1,24 @@
+Consider all the leaves of a binary tree, from left to right order, the values of those leaves form a leaf value sequence.
+For example, in the given tree above, the leaf value sequence is (6, 7, 4, 9, 8).
+
+Two binary trees are considered leaf-similar if their leaf value sequence is the same.
+
+Return true if and only if the two given trees with head nodes root1 and root2 are leaf-similar.
+std::vector<int> nodeList_root1, nodeList_root2;
+        getLeafValues(root1, nodeList_root1);
+        getLeafValues(root2, nodeList_root2);
+        return nodeList_root1 == nodeList_root2;
+    }
+
+    void getLeafValues(TreeNode* node, std::vector<int>& nodeList) {
+        if (!node) {
+            return;
+        }
+
+        if (!node->left && !node->right) {
+            nodeList.push_back(node->val);
+            return;
+        }
+
+        getLeafValues(node->left, nodeList);
+        getLeafValues(node->right, nodeList);
