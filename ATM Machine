@@ -1,0 +1,60 @@
+There is an ATM machine. Initially, it contains a total of 
+�
+K units of money. 
+�
+N people (numbered 
+1
+1 through 
+�
+N) want to withdraw money; for each valid 
+�
+i, the 
+�
+i-th person wants to withdraw 
+�
+�
+A 
+i
+​
+  units of money.
+
+The people come in and try to withdraw money one by one, in the increasing order of their indices. Whenever someone tries to withdraw money, if the machine has at least the required amount of money, it will give out the required amount. Otherwise, it will throw an error and not give out anything; in that case, this person will return home directly without trying to do anything else.
+
+For each person, determine whether they will get the required amount of money or not.
+
+Input
+The first line of the input contains a single integer 
+�
+T denoting the number of test cases. The description of 
+�
+T test cases follows.
+The first line of each test case contains two space-separated integers 
+N and 
+K.
+The second line contains 
+N space-separated integers 
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	// your code goes here
+	int t,x,y,z;
+	cin>>t;
+	while(t--){
+	    string ans="";
+	    cin>>x>>y;
+	    while(x--){
+	        cin>>z;
+	        if(y>=z){
+	            ans += "1";
+	            y -= z;
+	        }
+	        else ans+="0";
+	    }
+	    cout<<ans<<endl;
+	}
+	return 0;
+}
+
+  
