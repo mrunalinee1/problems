@@ -14,7 +14,25 @@ Example 3:
 
 Input: s = "aabb"
 Output: -1
+for O(n^2)complexity
+class Solution {
+public:
+    int firstUniqChar(string s) {
+    
+        for(int i=0;i<s.size();i++)
+        {
+            char a=s.at(i);
+            if(s.find(a)==i && s.find(a,i+1)==std::string::npos)
+            {
+                return i;
+            
+            }
+        }
+       return -1; 
+    }
+};
 
+with O(n) complexity
 unordered_map<char, int> charCount;
 
         // Count the frequency of each character
