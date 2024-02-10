@@ -1,0 +1,11 @@
+/* Solution as follows */
+
+ALTER TABLE Financials
+ADD Remarks TEXT DEFAULT 'This is fine';
+
+UPDATE Financials
+SET Remarks = 'Loss due to Covid'
+Where month in ('Mar','Apr','May');
+
+select * from Financials
+Limit 10;
