@@ -1,0 +1,30 @@
+class Solution {
+public:
+    bool isPalindrome(ListNode* head) {
+        // Edge case: empty list
+        if (head == nullptr)
+            return true;
+        
+        // Reverse the linked list
+        ListNode* prev = nullptr;
+        ListNode* curr = head;
+        while (curr != nullptr) {
+            ListNode* nextNode = curr->next;
+            curr->next = prev;
+            prev = curr;
+            curr = nextNode;
+        }
+        
+        // Compare the reversed list with the original
+        ListNode* reversedHead = prev;
+        while (head != nullptr && reversedHead != nullptr) {
+            if (head->val != reversedHead->val)
+                return false;
+            head = head->next;
+            reversedHead = reversedHead->next;
+        }
+        
+        // If both lists match till the end, it's a palindrome
+        return true;
+    }
+};
