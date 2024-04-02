@@ -1,0 +1,26 @@
+#include <unordered_map>
+using namespace std;
+
+class Solution {
+public:
+    bool isIsomorphic(string s, string t) {
+        unordered_map<char, char> d;
+        unordered_map<char, char> tToS;
+        
+        for (int i = 0; i < s.size(); ++i) {
+            if (d.find(s[i]) != d.end()) {
+                if (d[s[i]] != t[i]) return false;
+            } else {
+                d[s[i]] = t[i];
+            }
+            
+            if (tToS.find(t[i]) != tToS.end()) {
+                if (tToS[t[i]] != s[i]) return false;
+            } else {
+                tToS[t[i]] = s[i];
+            }
+        }
+        
+        return true;
+    }
+};
