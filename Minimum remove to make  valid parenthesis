@@ -1,0 +1,36 @@
+#include <string>
+#include <stack>
+
+class Solution {
+public:
+    std::string minRemoveToMakeValid(std::string s) {
+        std::stack<int> st;
+        for (int i = 0; i < s.size(); ++i) {
+            if (s[i] == '(') {
+                st.push(i);
+            } else if (s[i] == ')') {
+                if (!st.empty()) {
+                    st.pop();
+                } else {
+                    s[i] = '*'; // Marking invalid closing parenthesis
+                }
+            }
+        }
+        
+        // Marking remaining opening parentheses as invalid
+        while (!st.empty()) {
+            s[st.top()] = '*';
+            st.pop();
+        }
+        
+        // Constructing the result string without invalid parentheses
+        std::string result;
+        for (char c : s) {
+            if (c != '*') {
+                result += c;
+            }
+        }
+        
+        return result;
+    }
+};
