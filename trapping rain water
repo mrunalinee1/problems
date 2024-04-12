@@ -1,0 +1,32 @@
+#include <vector>
+#include <algorithm>
+
+class Solution {
+public:
+    int trap(std::vector<int>& height) {
+        int n = height.size();
+        if (n <= 2) return 0; // Not enough height to trap water
+
+        int left = 0, right = n - 1;
+        int leftMax = 0, rightMax = 0;
+        int trappedWater = 0;
+
+        while (left < right) {
+            // Update leftMax and rightMax
+            leftMax = std::max(leftMax, height[left]);
+            rightMax = std::max(rightMax, height[right]);
+
+            if (leftMax < rightMax) {
+                // Water trapped depends on leftMax
+                trappedWater += leftMax - height[left];
+                left++;
+            } else {
+                // Water trapped depends on rightMax
+                trappedWater += rightMax - height[right];
+                right--;
+            }
+        }
+
+        return trappedWater;
+    }
+};
