@@ -1,0 +1,7 @@
+CREATE TABLE
+new_subscribers
+AS SELECT * FROM
+subscribers_table1
+UNION
+SELECT * FROM
+subscribers_table2;
