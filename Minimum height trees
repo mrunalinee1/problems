@@ -1,0 +1,59 @@
+#include <vector>
+#include <queue>
+
+using namespace std;
+
+class Solution {
+public:
+    vector<int> findMinHeightTrees(int n, vector<vector<int>>& edges) {
+        if (n == 1) return {0}; // Special case: single node
+
+        vector<vector<int>> adjList(n);
+        vector<int> degree(n, 0);
+
+        // Construct the adjacency list and calculate the degree of each node
+        for (const auto& edge : edges) {
+            int u = edge[0];
+            int v = edge[1];
+            adjList[u].push_back(v);
+            adjList[v].push_back(u);
+            degree[u]++;
+            degree[v]++;
+        }
+
+        // Initialize a queue with leaf nodes (degree = 1)
+        queue<int> leafNodes;
+        for (int i = 0; i < n; ++i) {
+            if (degree[i] == 1) {
+                leafNodes.push(i);
+            }
+        }
+
+        // Remove leaf nodes iteratively until 1 or 2 nodes remain
+        while (n > 2) {
+            int numOfLeafNodes = leafNodes.size();
+            n -= numOfLeafNodes;
+
+            for (int i = 0; i < numOfLeafNodes; ++i) {
+                int u = leafNodes.front();
+                leafNodes.pop();
+
+                for (int v : adjList[u]) {
+                    degree[v]--;
+                    if (degree[v] == 1) {
+                        leafNodes.push(v);
+                    }
+                }
+            }
+        }
+
+        // Remaining nodes in the queue are roots of MHTs
+        vector<int> roots;
+        while (!leafNodes.empty()) {
+            roots.push_back(leafNodes.front());
+            leafNodes.pop();
+        }
+
+        return roots;
+    }
+};
