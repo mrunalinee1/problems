@@ -1,0 +1,34 @@
+class Solution
+{
+public:
+    Node* detectCycle(Node* head)
+    {
+        if (!head || !head->next) return nullptr;
+
+        Node* slow = head;
+        Node* fast = head;
+        bool hasCycle = false;
+
+        while (fast && fast->next) {
+            slow = slow->next;         // Slow pointer moves one step
+            fast = fast->next->next;   // Fast pointer moves two steps
+
+            if (slow == fast) {        // A cycle is detected
+                hasCycle = true;
+                break;
+            }
+        }
+
+        if (!hasCycle) return nullptr; // No cycle found
+
+        // Reset slow to head and start moving both pointers at the same speed
+        slow = head;
+        while (slow != fast) {
+            slow = slow->next;
+            fast = fast->next;
+        }
+
+        // The collision point is the cycle starting node
+        return slow;
+    }
+};
