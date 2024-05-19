@@ -1,0 +1,51 @@
+#include <iostream>
+#include <stack>
+using namespace std;
+
+bool isValidParenthesis(const string& S) {
+    stack<char> stk;
+
+    for (char c : S) {
+        if (c == '(') {
+            stk.push(c);
+        } else if (c == ')') {
+            if (!stk.empty() && stk.top() == '(') {
+                stk.pop();
+            } else {
+                return false;
+            }
+        }
+    }
+    return stk.empty();
+}
+
+int main() {
+    int T;
+    cin >> T;
+    while (T--) {
+        string S;
+        cin >> S;
+        cout << (isValidParenthesis(S) ? 1 : 0) << endl;
+    }
+    return 0;
+}
+Python Solution
+
+def is_valid_parenthesis(S):
+    stack = []
+
+    for char in S:
+        if char == '(':
+            stack.append(char)
+        elif char == ')':
+            if stack and stack[-1] == '(':
+                stack.pop()
+            else:
+                return False
+
+    return not stack
+
+T = int(input())
+for _ in range(T):
+    S = input()
+    print(1 if is_valid_parenthesis(S) else 0)
