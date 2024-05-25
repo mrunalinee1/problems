@@ -1,0 +1,3 @@
+largeNum factorial(largeNum& input) {
+    if (input > one) return (input * factorial(input-one));
+    else return one;
