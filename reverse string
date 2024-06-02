@@ -1,0 +1,27 @@
+class Solution {
+
+public:
+    void reverseString(vector<char>& s) {
+        int j=0;
+        int e=s.size()-1;
+        while(j<e){
+            swap(s[j++],s[e--]);
+        }
+    }
+};
+
+another approach
+
+class Solution {
+public:
+    void reverseString(vector<char>& s) {
+        int i = 0, j = s.size() - 1;
+        while (i < j) {
+            char temp = s[i];  // Save the value at s[i]
+            s[i] = s[j];       // Move the value at s[j] to s[i]
+            s[j] = temp;       // Move the saved value to s[j]
+            i++;               // Increment the start pointer
+            j--;               // Decrement the end pointer
+        }
+    }
+};
