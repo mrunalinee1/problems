@@ -1,0 +1,30 @@
+class Solution {
+public:
+    vector<int> intersect(vector<int>& nums1, vector<int>& nums2) {
+        unordered_map<int, int> count1, count2;
+        vector<int> result;
+        
+        // Count frequencies of elements in nums1
+        for (int num : nums1) {
+            count1[num]++;
+        }
+        
+        // Count frequencies of elements in nums2
+        for (int num : nums2) {
+            count2[num]++;
+        }
+        
+        // Find intersection and add to result
+        for (auto& pair : count1) {
+            int num = pair.first;
+            if (count2.find(num) != count2.end()) {
+                int common_count = min(count1[num], count2[num]);
+                for (int i = 0; i < common_count; ++i) {
+                    result.push_back(num);
+                }
+            }
+        }
+        
+        return result;
+    }
+};
