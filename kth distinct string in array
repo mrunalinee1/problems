@@ -1,0 +1,26 @@
+class Solution {
+public:
+    string kthDistinct(vector<string>& arr, int k) {
+        vector<string> arr2;
+        unordered_map<string, int> count;
+
+        // Count occurrences of each string
+        for (const auto& str : arr) {
+            count[str]++;
+        }
+
+        // Collect strings that appear exactly once
+        for (const auto& str : arr) {
+            if (count[str] == 1) {
+                arr2.push_back(str);
+            }
+        }
+
+        // Return the k-th distinct string or an empty string if k is out of bounds
+        if (k - 1 < arr2.size()) {
+            return arr2[k - 1];
+        } else {
+            return "";
+        }
+    }
+};
