@@ -1,0 +1,22 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+	int t;
+	cin>>t;
+	while(t--)
+	{
+	    int x,y,a,b,m,r;
+	    cin>>x >>y >>a >>b >>m;
+	    r=y-x;
+	    if(r<a*m|| r>m*b)
+	    {
+	        cout<<"0"<<endl;
+	    }
+	    else
+	    {
+	        cout<<"1"<<endl;
+	    }
+	}
+	return 0;
+}
