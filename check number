@@ -1,0 +1,34 @@
+import java.util.Scanner;
+
+public class Main {
+    
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.println("Enter numbers to check (0 to stop):");
+        
+        while (true) {
+            int num = scanner.nextInt();
+            
+            // Check for termination condition
+            if (num == 0) {
+                break; // Exit the loop if the user inputs 0
+            }
+            
+            checkNumber(num);
+        }
+        
+        scanner.close(); // Close the scanner to prevent resource leaks
+    }
+
+    // Function to check if the number is positive, negative, or zero
+    public static void checkNumber(int num) {
+        if (num > 0) {
+            System.out.println("Positive");
+        } else if (num < 0) {
+            System.out.println("Negative");
+        } else {
+            System.out.println("Zero");
+        }
+    }
+}
